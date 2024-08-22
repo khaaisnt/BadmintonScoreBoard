@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skor Badminton</title>
+
+    <link rel="stylesheet" href="src/output.css" />
+  </head>
+  <body class="flex justify-center">
+    <div class="mx-10">
+      <h1 class="text-4xl text-center font-bold my-5">Badminton Scoreboard</h1>
+      <div class="sm:rounded-lg relative overflow">
+        <table class="border shadow-lg w-[500px] rounded-lg overflow-hidden">
+          <thead class="bg-slate-700 text-white text-center">
+            <tr class="text-lg">
+              <th class="px-5 py-2">Nama</th>
+              <th class="px-5 py-2">Skor</th>
+              <th class="px-5 py-2">Tambah Skor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="text-lg">
+              <td class="text-center px-6 py-4">Pemain 1</td>
+              <td class="text-center px-6 py-4 text-2xl font-bold" id="pemain1">
+                0
+              </td>
+              <td class="flex justify-center px-6 py-4">
+                <button
+                  class="bg-gradient-to-r font-medium from-blue-500 to-blue-700 hover:bg-gradient-to-l hover:from-blue-500 hover:to-blue-700 py-2 px-8 rounded-md text-white duration-300"
+                  onclick="tambahSkor1()"
+                >
+                  +
+                </button>
+              </td>
+            </tr>
+            <tr class="text-lg border">
+              <td class="text-center px-6 py-3">Pemain 2</td>
+              <td class="text-center px-6 py-3 text-2xl font-bold" id="pemain2">
+                0
+              </td>
+              <td class="flex justify-center px-6 py-4">
+                <button
+                  class="bg-gradient-to-r font-medium from-blue-500 to-blue-700 hover:bg-gradient-to-l hover:from-blue-500 hover:to-blue-700 py-2 px-8 rounded-md text-white duration-300"
+                  onclick="tambahSkor2()"
+                >
+                  +
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="flex justify-center mt-5">
+        <button
+          class="py-3 px-7 bg-gradient-to-br from-slate-600 to-slate-400 text-white rounded-lg hover:bg-gradient-to-bl hover:from-slate-600 hover:to-slate-400 duration-300 font-medium"
+          onclick="resetScores()"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    let pemain1 = 0;
+    let pemain2 = 0;
+
+    function tambahSkor1() {
+      pemain1++;
+      document.getElementById("pemain1").innerText = pemain1;
+      checkGameWinner();
+    }
+
+    function tambahSkor2() {
+      pemain2++;
+      document.getElementById("pemain2").innerText = pemain2;
+      checkGameWinner();
+    }
+
+    function checkGameWinner() {
+      if (pemain1 >= 21 && pemain1 - pemain2 >= 2) {
+        alert("Pemain 1 Menang!");
+        resetScores();
+      } else if (pemain2 >= 21 && pemain2 - pemain1 >= 2) {
+        alert("Pemain 2 Menang!");
+        resetScores();
+      }
+    }
+
+    function resetScores() {
+      pemain1 = 0;
+      pemain2 = 0;
+      document.getElementById("pemain1").innerText = pemain1;
+      document.getElementById("pemain2").innerText = pemain2;
+    }
+  </script>
+</html>
