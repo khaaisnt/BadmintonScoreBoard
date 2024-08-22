@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Skor Badminton</title>
-
+    <title>Badminton Scoreboard</title>
     <link rel="stylesheet" href="src/output.css" />
   </head>
   <body class="flex justify-center">
@@ -16,7 +15,9 @@
             <tr class="text-lg">
               <th class="px-5 py-2">Nama</th>
               <th class="px-5 py-2">Skor</th>
+              <!-- <th class="px-5 py-2">Set</th> -->
               <th class="px-5 py-2">Tambah Skor</th>
+              <th class="px-5 py-2">Kurangi Skor</th>
             </tr>
           </thead>
           <tbody>
@@ -33,6 +34,14 @@
                   +
                 </button>
               </td>
+              <td class="justify-center">
+                <button
+                  class="bg-gradient-to-r font-medium from-red-500 to-red-700 hover:bg-gradient-to-l hover:from-red-500 hover:to-red-700 py-2 px-8 rounded-md text-white duration-300"
+                  onclick="kurangSkor1()"
+                >
+                  -
+                </button>
+              </td>
             </tr>
             <tr class="text-lg border">
               <td class="text-center px-6 py-3">Pemain 2</td>
@@ -47,24 +56,37 @@
                   +
                 </button>
               </td>
+              <td>
+                <button
+                  class="bg-gradient-to-r font-medium from-red-500 to-red-700 hover:bg-gradient-to-l hover:from-red-500 hover:to-red-700 py-2 px-8 rounded-md text-white duration-300"
+                  onclick="kurangSkor2()"
+                >
+                  -
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="flex justify-center mt-5">
         <button
-          class="py-3 px-7 bg-gradient-to-br from-slate-600 to-slate-400 text-white rounded-lg hover:bg-gradient-to-bl hover:from-slate-600 hover:to-slate-400 duration-300 font-medium"
+          class="py-3 px-7 bg-gradient-to-br from-slate-600 to-slate-400 text-white rounded-lg hover:bg-gradient-to-bl hover:from-slate-600 hover:to-slate-400 duration-300 font-medium hover:scale-110"
           onclick="resetSkor()"
         >
           Reset
         </button>
       </div>
+      <!-- <div class="mt-5 text-center">
+        <h4>Pemenang Set</h4>
+        <p class="text-lg" id="pemenangSet"></p>
+      </div> -->
     </div>
   </body>
 
   <script>
     let pemain1 = 0;
     let pemain2 = 0;
+    const maxSet = 3;
 
     function tambahSkor1() {
       pemain1++;
@@ -78,15 +100,33 @@
       pemainMenang();
     }
 
+    function kurangSkor1() {
+      pemain1--;
+      document.getElementById("pemain1").innerText = pemain1;
+    }
+
+    function kurangSkor2() {
+      pemain2--;
+      document.getElementById("pemain2").innerText = pemain2;
+    }
+
     function pemainMenang() {
-      if (pemain1 >= 22 && pemain1 - pemain2 >= 2) {
+      if ((pemain1 >= 22 && pemain1 - pemain2 >= 3) || pemain1 == 31) {
         alert("Pemain 1 Menang!");
         resetSkor();
-      } else if (pemain2 >= 22 && pemain2 - pemain1 >= 2) {
+      } else if ((pemain2 >= 22 && pemain2 - pemain1 >= 3) || pemain2 == 31) {
         alert("Pemain 2 Menang!");
         resetSkor();
       }
     }
+
+    // function pemenangSet() {
+    //   if (pemain1 == maxSet) {
+    //     document.getElementById("pemenangSet").innerText = "Pemain 1 Menang!";
+    //   } else if (pemain2 == maxSet) {
+    //     document.getElementById("pemenangSet").innerText = "Pemain 2 Menang!";
+    //   }
+    // }
 
     function resetSkor() {
       pemain1 = 0;
