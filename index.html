@@ -54,7 +54,7 @@
       <div class="flex justify-center mt-5">
         <button
           class="py-3 px-7 bg-gradient-to-br from-slate-600 to-slate-400 text-white rounded-lg hover:bg-gradient-to-bl hover:from-slate-600 hover:to-slate-400 duration-300 font-medium"
-          onclick="resetScores()"
+          onclick="resetSkor()"
         >
           Reset
         </button>
@@ -69,26 +69,26 @@
     function tambahSkor1() {
       pemain1++;
       document.getElementById("pemain1").innerText = pemain1;
-      checkGameWinner();
+      pemainMenang();
     }
 
     function tambahSkor2() {
       pemain2++;
       document.getElementById("pemain2").innerText = pemain2;
-      checkGameWinner();
+      pemainMenang();
     }
 
-    function checkGameWinner() {
-      if (pemain1 >= 21 && pemain1 - pemain2 >= 2) {
+    function pemainMenang() {
+      if (pemain1 >= 22 && pemain1 - pemain2 >= 2) {
         alert("Pemain 1 Menang!");
-        resetScores();
-      } else if (pemain2 >= 21 && pemain2 - pemain1 >= 2) {
+        resetSkor();
+      } else if (pemain2 >= 22 && pemain2 - pemain1 >= 2) {
         alert("Pemain 2 Menang!");
-        resetScores();
+        resetSkor();
       }
     }
 
-    function resetScores() {
+    function resetSkor() {
       pemain1 = 0;
       pemain2 = 0;
       document.getElementById("pemain1").innerText = pemain1;
